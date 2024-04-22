@@ -4,22 +4,25 @@ function App() {
   const [description, setDescription] = useState("Choose title content");
   const [title, setTitle] = useState("Submit title");
   const [next, setNext] = useState("");
+  const backBtn = document.getElementById("backbtn")
+  const nextBtn = document.getElementById("nextbtn")
+
+  
   const [opacityState, setOpacityState] = useState({
-    one: 0.5,
-    two: 1,
+    one: 1,
+    two: 0.5,
     three: 0.5,
   });
 
   useEffect(() => {
     updateOpacity();
-  }, [description]); // Call updateOpacity whenever description changes
+  }, [description]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
   };
 
   const updateOpacity = () => {
-    // Update opacity state based on description
     if (description === "Choose title content") {
       setOpacityState({ one: 1, two: 0.5, three: 0.5 });
     } else if (description === "Choose description content") {
@@ -56,6 +59,10 @@ function App() {
       setNext("");
     }
   };
+
+  if (backBtn.textContent === "Submit title") {
+    backBtn.textContent = "Choose title";
+  }
 
   return (
     <>
@@ -102,6 +109,10 @@ function App() {
                   setDescription("Choose description content");
                   setTitle("Back");
                   setNext("Submit description");
+                } else if (description === "Are you happy now?"){
+                  setDescription("Choose description content");
+                  setTitle("Back");
+                  setNext("Submit description");
                 }
               }}
               className="second flex items-center gap-3 cursor-pointer"
@@ -136,13 +147,13 @@ function App() {
             </div>
 
             <div className="center flex gap-4">
-              <button
+              <button id="backbtn"
                 onClick={handleBackClick}
                 className="rounded-md bg-gray-300 px-3 py-2 text-xl"
               >
                 {title}
               </button>
-              <button
+              <button id="nextbtn"
                 onClick={handleNextClick}
                 className="bir rounded-md bg-gray-300 px-3 py-2 text-xl"
               >
