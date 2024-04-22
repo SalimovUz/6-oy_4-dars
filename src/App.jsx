@@ -60,9 +60,6 @@ function App() {
     }
   };
 
-  if (backBtn.textContent === "Submit title") {
-    backBtn.textContent = "Choose title";
-  }
 
   return (
     <>
